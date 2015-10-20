@@ -1,5 +1,5 @@
 # Make sure you set API_ROOT before requiring this
-raise 'Please set API_ROOT before requiring this' unless !API_ROOT.nil?
+raise 'Please set API_ROOT before requiring this file!' unless defined? API_ROOT
 
 # What to require?
 # :api        => API extensions to built-in classes like Game_Interpreter
