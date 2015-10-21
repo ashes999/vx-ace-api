@@ -9,8 +9,8 @@ module Config
   # :X is A on keyboard
   ACTIVATION_KEY = :X
 
-  # Which switch to activate when we press/hold ACTIVATION_KEY
-  ACTIVATION_SWITCH = 1
+  # Which global switch to activate when we press/hold ACTIVATION_KEY
+  ACTIVATION_SWITCH = 100
 end
 
 class Game_Player < Game_Character
