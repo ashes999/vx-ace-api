@@ -1,11 +1,15 @@
 # Serializes and deserializes. Note that this uses Marshal.dump under
 # the hood, which means changes to fields are not handled gracefully ...
 class Serializer
-	def self.serialize(obj)
+	def self.serialize(obj, filename)
+    File.open(filename, "wb") { |f| # write as binary
+        f.write(Marshal.dump(obj))
+    }
     return Marshal.dump(obj)
   end
-  def self.deserialize(str)
-    return Marshal.restore(str)
+  
+  def self.deserialize(filename)
+    return Marshal.load(File.binread(filename)) # read as binary
   end
 end
 
