@@ -21,9 +21,7 @@ class Logger
 	def self.log(message, level = @@logging_level)
 		return if level > @@logging_level
 		
-		mode = @@first_message ? 'w' : 'a'
-		
-		File.open('log.txt', mode) { |f|
+		File.open('log.txt', 'a') { |f|
 			f.write("#{Time.new} :: #{message}\n")
 		}
 		
