@@ -27,6 +27,7 @@ class Scene_Battle < Scene_Base
     vxapi_pre_terminate
   end
   
+  ## Use this to set a callback that executes after battle.
   def self.pre_terminate_action=(callback)
     @@pre_terminate_action = callback
   end
