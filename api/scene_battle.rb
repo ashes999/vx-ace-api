@@ -19,11 +19,11 @@ class Scene_Battle < Scene_Base
   def process_action_end
     vxapi_process_action_end
     return if @attack_stats.nil?
-    @attack_stats[:attacker].after_attack    
+    @attack_stats[:attacker].after_attack
   end
   
   def pre_terminate
-    @@pre_terminate_action.call
+    @@pre_terminate_action.call unless @@pre_terminate_action.nil?
     vxapi_pre_terminate
   end
   
