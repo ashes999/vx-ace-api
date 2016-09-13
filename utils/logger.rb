@@ -4,36 +4,19 @@
 #    Version: 1.0
 #------------------------------------------------------------------------
 # * Description:
-# Allows you to log messages at a given level (default is :info).
-# Levels are: :info, :debug. 
+# Simple, flat logging to a file (with a timestamp).
 #========================================================================
 
-LEVELS = { :info => 1, :debug => 2 }
-
 class Logger
-  @@logging_level = :info
   @@first_message = true
   
-  def self.logging_level=(value)
-    @@logging_level = value
-  end
-
-	def self.log(message, level = @@logging_level)
-		return if level > @@logging_level
-		
-		File.open('log.txt', 'a') { |f|
+	def self.log(message)
+		file_mode = !$DEBUG.nil? && @@first_message ? 'w' : 'a'    
+		File.open('log.txt', file_mode) { |f|
 			f.write("#{Time.new} :: #{message}\n")
 		}
 		
 		@@first_message = false
 	end
-	
-	def self.info(message)
-		Logger.log(message, :info)
-	end
-	
-	def self.debug(message)
-		Logger.log(message, :debug)
-	end		
 end
 
