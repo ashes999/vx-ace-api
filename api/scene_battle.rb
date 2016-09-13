@@ -6,6 +6,13 @@ class Scene_Battle < Scene_Base
   
   @@pre_terminate_action = nil
   
+  ## Use this to set a callback that executes after battle.
+  def self.pre_terminate_action=(callback)
+    @@pre_terminate_action = callback
+  end
+  
+  ### everything below is private/internal ###
+  
   def execute_action     
     attacker = @subject
     action = attacker.current_action
@@ -25,10 +32,5 @@ class Scene_Battle < Scene_Base
   def pre_terminate
     @@pre_terminate_action.call unless @@pre_terminate_action.nil?
     vxapi_pre_terminate
-  end
-  
-  ## Use this to set a callback that executes after battle.
-  def self.pre_terminate_action=(callback)
-    @@pre_terminate_action = callback
-  end
+  end  
 end
