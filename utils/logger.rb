@@ -12,7 +12,7 @@ class Logger
   
 	def self.log(message)
     # If we're in debug mode, wipe the file on the first message
-		file_mode = !$DEBUG.nil? && @@first_message ? 'w' : 'a'    
+		file_mode = @@first_message ? 'w' : 'a'    
 		File.open('log.txt', file_mode) { |f|
 			f.write("#{Time.new} :: #{message}\n")
 		}
